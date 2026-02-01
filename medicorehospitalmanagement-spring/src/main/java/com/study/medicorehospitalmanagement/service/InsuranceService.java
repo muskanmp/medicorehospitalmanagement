@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 
 import com.study.medicorehospitalmanagement.entities.Insurance;
 import com.study.medicorehospitalmanagement.entities.Patient;
-import com.study.medicorehospitalmanagement.repositories.InsuranceRepository;
 import com.study.medicorehospitalmanagement.repositories.PatientRepository;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -17,7 +16,7 @@ import lombok.RequiredArgsConstructor;
 
 public class InsuranceService {
 
-    private final InsuranceRepository insuranceRepository;
+    // private final InsuranceRepository insuranceRepository;
     private final PatientRepository patientRepository;
 
     @Transactional

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.study.medicorehospitalmanagement.entities.type.BloodGroupType;
 
 import java.io.Serializable;
@@ -57,6 +58,7 @@ public class Patient implements Serializable{
     @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Insurance insurance;
     @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "patient")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<Appointment> appointmentList;
 
     @Column(unique = true)

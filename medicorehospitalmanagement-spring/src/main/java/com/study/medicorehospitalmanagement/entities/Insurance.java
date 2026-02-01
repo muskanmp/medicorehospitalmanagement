@@ -13,6 +13,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  *
  * @author Muskaan
@@ -44,6 +46,7 @@ public class Insurance implements Serializable {
     @Column(name = "createdat")
     private LocalDateTime createdat;
     @OneToOne(mappedBy = "insurance")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Patient patient;
 
     public Insurance() {
