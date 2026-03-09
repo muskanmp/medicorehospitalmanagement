@@ -1,0 +1,36 @@
+.login-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f4f6fb;
+}
+
+.login-card {
+  width: 380px;
+}
+
+.field {
+  margin-bottom: 18px;
+}
+
+.login-btn {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.google-btn {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.divider {
+  text-align: center;
+  margin: 15px 0;
+  color: gray;
+}
+
+.signup {
+  text-align: center;
+  margin-top: 15px;
+}
