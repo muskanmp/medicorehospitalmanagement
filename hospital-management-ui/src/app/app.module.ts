@@ -1,11 +1,11 @@
 import { LOCALE_ID, NgModule } from "@angular/core";
 import { AppComponent } from "./app.component";
 import { DatePipe } from "@angular/common";
-import { HttpClientModule } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { GoogleChartsModule } from "angular-google-charts";
-import { AppRoutes } from './app.routes';
+import { AppRoutingModule } from './app-routing.module';
 import { SignupComponent } from './signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PatientListComponent } from './patient-list/patient-list.component';
@@ -15,7 +15,12 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
+import { TableModule } from 'primeng/table';
+import { MenuModule } from 'primeng/menu';
+import { SidebarModule } from 'primeng/sidebar';
 import { LoginComponent } from "./login/login.component";
+import { HomeComponent } from './home/home.component';
+import { JwtInterceptor } from "./jwt.interceptor";
 
 @NgModule({
   declarations: [
@@ -25,7 +30,8 @@ import { LoginComponent } from "./login/login.component";
     DashboardComponent,
     PatientListComponent,
     AppointmentListComponent,
-    AppointmentAddComponent
+    AppointmentAddComponent,
+    HomeComponent
   ],
 
   imports: [
@@ -34,16 +40,24 @@ import { LoginComponent } from "./login/login.component";
     ReactiveFormsModule,
     HttpClientModule,
     GoogleChartsModule,
-    AppRoutes,
+    AppRoutingModule,
     InputTextModule,
     PasswordModule,
     ButtonModule,
-    CardModule
-],
+    CardModule,
+    MenuModule,
+    SidebarModule,
+    TableModule,
+  ],
 
   providers: [
     DatePipe,
-    { provide: LOCALE_ID, useValue: 'en-IN' }
+    { provide: LOCALE_ID, useValue: 'en-IN' },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent],
 })
