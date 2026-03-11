@@ -1,0 +1,33 @@
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { environment } from "../environments/environment.development";
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthService {
+
+  private baseUrl = environment.BASE_URL;
+
+  constructor(private http: HttpClient) {}
+
+  login(data:any){
+    return this.http.post(this.baseUrl + "/auth/login", data);
+  }
+
+  signup(data:any){
+    return this.http.post(this.baseUrl + "/auth/signup", data);
+  }
+
+  saveToken(token:string){
+    localStorage.setItem("token", token);
+  }
+
+  getToken(){
+    return localStorage.getItem("token");
+  }
+
+  logout(){
+    localStorage.removeItem("token");
+  }
+}

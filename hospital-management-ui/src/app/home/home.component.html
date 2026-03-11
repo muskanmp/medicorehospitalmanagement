@@ -1,0 +1,60 @@
+<div class="layout">
+
+  <!-- Sidebar -->
+  <div class="sidebar" [class.collapsed]="collapsed">
+
+    <div class="logo">
+      HMS
+    </div>
+
+    <ul>
+
+      <li routerLink="/home/dashboard">
+        <i class="pi pi-chart-bar"></i>
+        <span>Dashboard</span>
+      </li>
+
+      <li *ngIf="role==='ADMIN'" routerLink="/home/patients">
+        <i class="pi pi-users"></i>
+        <span>Patients</span>
+      </li>
+
+      <li routerLink="/home/appointments">
+        <i class="pi pi-calendar"></i>
+        <span>Appointments</span>
+      </li>
+
+      <li *ngIf="role==='ADMIN'" routerLink="/home/add-appointment">
+        <i class="pi pi-plus"></i>
+        <span>Add Appointment</span>
+      </li>
+
+    </ul>
+
+  </div>
+
+  <!-- Content -->
+  <div class="content">
+
+    <!-- Header -->
+    <div class="header">
+
+      <button pButton icon="pi pi-bars" (click)="toggleSidebar()"></button>
+
+      <div class="profile">
+
+        <p-menu #menu [popup]="true" [model]="profileItems"></p-menu>
+
+        <button pButton icon="pi pi-user" (click)="menu.toggle($event)"></button>
+
+      </div>
+
+    </div>
+
+    <div class="page">
+      <router-outlet></router-outlet>
+    </div>
+
+  </div>
+
+</div>

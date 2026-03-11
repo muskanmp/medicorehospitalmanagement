@@ -1,0 +1,52 @@
+<div class="login-page">
+
+  <p-card header="Hospital Management System" class="login-card">
+
+    <div class="p-fluid">
+
+      <div class="field">
+        <label>Email</label>
+        <input
+          pInputText
+          type="email"
+          [(ngModel)]="loginData.email"
+          placeholder="Enter email"
+        />
+      </div>
+
+      <div class="field">
+        <label>Password</label>
+        <p-password
+          [(ngModel)]="loginData.password"
+          [feedback]="false"
+          placeholder="Enter password"
+        ></p-password>
+      </div>
+
+      <button
+        pButton
+        label="Login"
+        icon="pi pi-sign-in"
+        class="p-button-primary login-btn"
+        (click)="login()"
+      ></button>
+
+      <div class="divider">OR</div>
+
+      <button
+        pButton
+        label="Continue with Google"
+        icon="pi pi-google"
+        class="p-button-outlined google-btn"
+      ></button>
+
+      <div class="signup">
+        Don't have an account?
+        <a routerLink="/signup">Signup</a>
+      </div>
+
+    </div>
+
+  </p-card>
+
+</div>

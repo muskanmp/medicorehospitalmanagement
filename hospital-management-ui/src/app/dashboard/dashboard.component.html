@@ -1,0 +1,60 @@
+<div class="cards">
+  <p-card>
+    <h3>Total Patients</h3>
+    <h2>{{ stats.patients }}</h2>
+  </p-card>
+
+  <p-card>
+    <h3>Total Doctors</h3>
+    <h2>{{ stats.doctors }}</h2>
+  </p-card>
+
+  <p-card>
+    <h3>Appointments</h3>
+    <h2>{{ stats.appointments }}</h2>
+  </p-card>
+
+  <p-card>
+    <h3>Departments</h3>
+    <h2>{{ stats.departments }}</h2>
+  </p-card>
+</div>
+
+<p-card header="Hospital Analytics">
+
+  <ng-container *ngIf="data.length > 0; else noOrderChart">
+    <google-chart
+      [type]="doughnut"
+      [data]="data"
+      [options]="options"
+    ></google-chart>
+  </ng-container>
+
+  <ng-template #noOrderChart>
+    <div style="text-align: center">
+      📊 No data available to render the chart.
+    </div>
+  </ng-template>
+</p-card>
+
+<p-card header="Recent Appointments">
+  <p-table [value]="appointments">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Patient</th>
+        <th>Doctor</th>
+        <th>Date</th>
+        <th>Status</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-a>
+      <tr>
+        <td>{{ a.patient }}</td>
+        <td>{{ a.doctor }}</td>
+        <td>{{ a.date }}</td>
+        <td>{{ a.status }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-card>
