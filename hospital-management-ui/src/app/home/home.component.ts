@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +8,9 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
+  constructor(private router:Router){
 
+  }
 collapsed=false;
 
 role='ADMIN';   // get from JWT later
@@ -31,6 +34,12 @@ this.collapsed=!this.collapsed;
 logout(){
 localStorage.removeItem("token");
 window.location.href="/login";
+}
+
+onLogout() {
+
+  this.router.navigateByUrl("login")
+throw new Error('Method not implemented.');
 }
 
 }

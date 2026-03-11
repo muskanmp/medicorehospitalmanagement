@@ -1,1 +1,25 @@
-<p>appointment-list works!</p>
+<p-card header="Recent Appointments">
+
+<p-table [value]="appointments">
+
+<ng-template pTemplate="header">
+<tr>
+<th>Patient</th>
+<th>Doctor</th>
+<th>Date</th>
+<th>Status</th>
+</tr>
+</ng-template>
+
+<ng-template pTemplate="body" let-a>
+<tr>
+<td>{{a.patient}}</td>
+<td>{{a.doctor}}</td>
+<td>{{a.date}}</td>
+<td>{{a.status}}</td>
+</tr>
+</ng-template>
+
+</p-table>
+
+</p-card>
