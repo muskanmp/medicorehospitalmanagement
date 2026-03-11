@@ -11,7 +11,7 @@ import org.springframework.data.domain.Pageable;
 
 public interface PatientRepository extends JpaRepository<Patient, Integer> {
 
-    Optional<Patient> findById(Integer patientId);
+    // Optional<Patient> findById(Integer Id);
 
     @Query(value = "select * from patient", nativeQuery = true)
     Page<Patient> findAllPatients(Pageable pageable);

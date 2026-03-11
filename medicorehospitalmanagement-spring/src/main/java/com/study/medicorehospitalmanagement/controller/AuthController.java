@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.study.medicorehospitalmanagement.dto.LoginResponseDTO;
 import com.study.medicorehospitalmanagement.dto.LoginResuestDTO;
+import com.study.medicorehospitalmanagement.dto.SignupRequestDTO;
 import com.study.medicorehospitalmanagement.dto.SignupResponseDTO;
 import com.study.medicorehospitalmanagement.security.AuthService;
 
@@ -27,7 +28,7 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<SignupResponseDTO> signup(@RequestBody LoginResuestDTO signupResuestDTO){
+    public ResponseEntity<SignupResponseDTO> signup(@RequestBody SignupRequestDTO signupResuestDTO){
         return ResponseEntity.ok(authService.signup(signupResuestDTO));
     }
     

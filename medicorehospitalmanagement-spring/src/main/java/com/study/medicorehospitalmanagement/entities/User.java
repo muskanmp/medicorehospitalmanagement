@@ -2,11 +2,15 @@ package com.study.medicorehospitalmanagement.entities;
 
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.study.medicorehospitalmanagement.entities.type.AuthproviderType;
+import com.study.medicorehospitalmanagement.entities.type.RoleType;
 
 import java.util.*;
+import java.util.stream.Collectors;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -38,9 +42,15 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private AuthproviderType providertype;
 
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
+    Set<RoleType> roles = new HashSet<>();
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities(){
-        return List.of();
+        return roles.stream()
+        .map(role-> new SimpleGrantedAuthority("ROLE_"+ role.name()))
+        .collect(Collectors.toSet());
     }
 
     

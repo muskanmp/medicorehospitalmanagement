@@ -43,6 +43,9 @@ public class Doctor implements Serializable {
     private List<Appointment> appointmentList;
     @OneToOne(mappedBy = "headdoctor")
     private Department department;
+    
+    @OneToOne
+    private User user; 
 
     public Doctor() {
     }
@@ -135,6 +138,14 @@ public class Doctor implements Serializable {
     @Override
     public String toString() {
         return "com.study.medicorehospitalmanagement.entities.Doctor[ id=" + id + " ]";
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
     
 }

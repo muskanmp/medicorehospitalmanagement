@@ -1,5 +1,7 @@
 package com.study.medicorehospitalmanagement.security;
 
+import java.util.Set;
+
 import org.jspecify.annotations.Nullable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,9 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.study.medicorehospitalmanagement.dto.LoginResponseDTO;
 import com.study.medicorehospitalmanagement.dto.LoginResuestDTO;
+import com.study.medicorehospitalmanagement.dto.SignupRequestDTO;
 import com.study.medicorehospitalmanagement.dto.SignupResponseDTO;
 import com.study.medicorehospitalmanagement.entities.User;
+import com.study.medicorehospitalmanagement.entities.Patient;
 import com.study.medicorehospitalmanagement.entities.type.AuthproviderType;
+import com.study.medicorehospitalmanagement.entities.type.RoleType;
+import com.study.medicorehospitalmanagement.repositories.PatientRepository;
 import com.study.medicorehospitalmanagement.repositories.UserRepository;
 
 import jakarta.transaction.Transactional;
@@ -30,6 +36,7 @@ public class AuthService {
     private final AuthUtil authUtil;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final PatientRepository patientRepository;
 
     public LoginResponseDTO login(LoginResuestDTO loginResuestDTO) {
 
@@ -42,7 +49,7 @@ public class AuthService {
         return new LoginResponseDTO(token, user.getId());
     }
 
-    public User singupInternal(LoginResuestDTO signupResuestDTO, AuthproviderType authproviderType,String providerID) {
+    public User singupInternal(SignupRequestDTO signupResuestDTO, AuthproviderType authproviderType,String providerID) {
 
         User user = userRepository.findByUsername(signupResuestDTO.getUsername()).orElse(null);
         if (user != null)
@@ -52,15 +59,26 @@ public class AuthService {
                 .username(signupResuestDTO.getUsername())
                 .providerid(providerID)
                 .providertype(authproviderType)
+                .roles(Set.of(RoleType.PATIENT))
                 .build();
         if (authproviderType == AuthproviderType.EMAIL) {
             user.setPassword(passwordEncoder.encode(signupResuestDTO.getPassword()));
         }
 
-        return userRepository.save(user);
+        user = userRepository.save(user);
+
+        Patient patient = Patient.builder()
+        .name(signupResuestDTO.getName())
+        .email(signupResuestDTO.getUsername())
+        .user(user)
+        .build(); 
+
+        patientRepository.save(patient);
+
+        return user;
     }
 
-    public SignupResponseDTO signup(LoginResuestDTO signupResuestDTO) {
+    public SignupResponseDTO signup(SignupRequestDTO signupResuestDTO) {
 
         User user = singupInternal(signupResuestDTO, AuthproviderType.EMAIL, null);
         return new SignupResponseDTO(user.getId(), user.getUsername());
@@ -76,10 +94,11 @@ public class AuthService {
 
         String email = oAuth2User.getAttribute("email");
         User emailuser = userRepository.findByUsername(email).orElse(null);
+        String name = oAuth2User.getAttribute("name");
 
         if (user == null || emailuser == null) {
             String username = authUtil.determineUsernameFromOAuth2(oAuth2User, registerId, providerId);
-            user = singupInternal(new LoginResuestDTO(username, null), providerType, providerId);
+            user = singupInternal(new SignupRequestDTO(username, null, name), providerType, providerId);
         } else if (user != null) {
             if (email != null && !email.isEmpty() && !email.equals(user.getUsername())) {
                 user.setUsername(email);
