@@ -1,1 +1,122 @@
-<p>appointment-add works!</p>
+<div class="body">
+  <div class="card3">
+    <div class="card-header" style="border-top: 3px solid #2f4050">
+      <b>{{ isediting ? "Edit New Appointment" : "Add New Appointment" }}</b>
+    </div>
+    <style>
+      ::ng-deep .p-dropdown-panel .p-dropdown-filter-icon {
+        display: none;
+      }
+    </style>
+    <div class="card-body">
+      <div class="row">
+        <!-- Patient -->
+        <div class="col-6 col-md-6">
+          <label class="form-label">Patient</label>
+          <p-dropdown
+            [options]="patients"
+            optionLabel="name"
+            placeholder="Select Patient"
+            [(ngModel)]="appointment.patient"
+          >
+          </p-dropdown>
+        </div>
+
+        <!-- Doctor -->
+        <div class="col-6 col-md-6">
+          <label class="form-label">Doctor</label>
+          <p-dropdown
+            [options]="doctors"
+            optionLabel="name"
+            placeholder="Select Doctor"
+            [(ngModel)]="appointment.doctor"
+            (onChange)="loadDoctorAvailability()"
+          >
+          </p-dropdown>
+        </div>
+      </div>
+
+      <div class="row">
+        <!-- Department -->
+        <div class="col-6 col-md-6">
+          <label class="form-label">Department</label>
+          <p-dropdown
+            [options]="departments"
+            optionLabel="name"
+            placeholder="Select Department"
+            [(ngModel)]="appointment.department"
+          >
+          </p-dropdown>
+        </div>
+
+        <!-- Date -->
+        <div class="col-6 col-md-6">
+          <label class="form-label">Appointment Date</label>
+          <p-calendar
+            [(ngModel)]="appointment.date"
+            dateFormat="dd/mm/yy"
+            showIcon="true"
+            (onChange)="loadDoctorAvailability()"
+          >
+          </p-calendar>
+        </div>
+      </div>
+
+      <div class="row">
+        <!-- Time Slot -->
+        <div class="col-6 col-md-6">
+          <label class="form-label">Available Time Slots</label>
+          <p-dropdown
+            [options]="timeSlots"
+            [(ngModel)]="appointment.time"
+            placeholder="Select time slot"
+          >
+          </p-dropdown>
+        </div>
+
+        <!-- Status -->
+        <div class="col-6 col-md-6">
+          <label class="form-label">Status</label>
+          <p-dropdown
+            [options]="statusOptions"
+            placeholder="Select Status"
+            [(ngModel)]="appointment.status"
+          >
+          </p-dropdown>
+        </div>
+      </div>
+
+      <div class="row">
+        <!-- Notes -->
+        <div class="col-6 col-md-6">
+          <label class="form-label">Notes</label>
+          <textarea
+            pInputTextarea
+            rows="2"
+            [(ngModel)]="appointment.notes"
+            placeholder="Enter additional notes"
+          >
+          </textarea>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button
+          pButton
+          label="Save Appointment"
+          icon="pi pi-check"
+          class="p-button-success"
+          (click)="saveAppointment()"
+        ></button>
+&nbsp;
+        <button
+          pButton
+          label="Reset"
+          icon="pi pi-refresh"
+          class="p-button-secondary"
+          (click)="resetForm()"
+        ></button>
+      </div>
+    </div>
+  </div>
+</div>

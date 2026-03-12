@@ -18,7 +18,7 @@ export class PatientListComponent
   ngOnInit()
   {
 
-    this.webClient.get(`/getallpatients`)
+    this.webClient.get(`/patients`)
       .subscribe((data: any) =>
       {
         this.patients = data;

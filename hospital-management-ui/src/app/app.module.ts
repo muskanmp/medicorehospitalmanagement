@@ -21,6 +21,9 @@ import { SidebarModule } from 'primeng/sidebar';
 import { LoginComponent } from "./login/login.component";
 import { HomeComponent } from './home/home.component';
 import { JwtInterceptor } from "./jwt.interceptor";
+import { DropdownModule } from "primeng/dropdown";
+import { CalendarModule } from "primeng/calendar";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -48,6 +51,9 @@ import { JwtInterceptor } from "./jwt.interceptor";
     MenuModule,
     SidebarModule,
     TableModule,
+    DropdownModule,
+    CalendarModule,
+    BrowserAnimationsModule
   ],
 
   providers: [

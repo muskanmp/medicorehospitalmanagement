@@ -5,7 +5,7 @@ import { AppointmentListComponent } from './appointment-list/appointment-list.co
 import { PatientListComponent } from './patient-list/patient-list.component';
 import { SignupComponent } from './signup/signup.component';
 import { AppointmentAddComponent } from './appointment-add/appointment-add.component';
-import { AuthGuard } from './guards/authGuard';
+import { AuthGuard } from './authGuard';
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
