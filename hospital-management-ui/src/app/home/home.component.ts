@@ -1,45 +1,39 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrl: './home.component.scss',
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+  constructor(private router: Router) {}
+  collapsed = false;
 
-  constructor(private router:Router){
+  role = 'ADMIN'; // get from JWT later
 
+  profileItems = [
+    {
+      label: 'Profile',
+      icon: 'pi pi-user',
+    },
+    {
+      label: 'Logout',
+      icon: 'pi pi-sign-out',
+      command: () => this.onLogout(),
+    },
+  ];
+
+  ngOnInit(): void {}
+
+  toggleSidebar() {
+    this.collapsed = !this.collapsed;
   }
-collapsed=false;
 
-role='ADMIN';   // get from JWT later
-
-profileItems=[
-{
-label:'Profile',
-icon:'pi pi-user'
-},
-{
-label:'Logout',
-icon:'pi pi-sign-out',
-command:()=>this.logout()
-}
-];
-
-toggleSidebar(){
-this.collapsed=!this.collapsed;
-}
-
-logout(){
-localStorage.removeItem("token");
-window.location.href="/login";
-}
-
-onLogout() {
-
-  this.router.navigateByUrl("login")
-throw new Error('Method not implemented.');
-}
-
+  onLogout() {
+    
+    localStorage.removeItem('token');
+    localStorage.clear;
+    this.router.navigateByUrl('login');
+  }
 }

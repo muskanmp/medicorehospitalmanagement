@@ -11,9 +11,11 @@ import { AuthService } from '../auth.service';
 export class LoginComponent {
 
   loginData = {
-    email: '',
+    username: '',
     password: ''
   };
+
+  errormessage:any;
 
   constructor(
     private authService: AuthService,
@@ -25,11 +27,20 @@ export class LoginComponent {
     this.authService.login(this.loginData)
       .subscribe((res:any) => {
 
-        localStorage.setItem("token", res.token);
+        localStorage.setItem("token", res.jwt);
 
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/home/dashboard']);
 
-      });
+      },(err)=>{
+
+        console.log(err);
+        if(err.error.statusCode==="401 UNAUTHORIZED"){
+
+          this.errormessage= "Invalid username or password!"
+        }
+
+      }
+    );
 
   }
 }

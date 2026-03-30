@@ -8,9 +8,9 @@
         <label>Email</label>
         <input
           pInputText
-          type="email"
-          [(ngModel)]="loginData.email"
-          placeholder="Enter email"
+          type="username  "
+          [(ngModel)]="loginData.username"
+          placeholder="Enter Username"
         />
       </div>
 
@@ -30,6 +30,8 @@
         class="p-button-primary login-btn"
         (click)="login()"
       ></button>
+
+      <div class="error" style="color: red; margin-top: 10px;">{{errormessage}}</div>
 
       <div class="divider">OR</div>
 

@@ -18,6 +18,7 @@ export class DashboardComponent
   type = 'PieChart';
   appointments: any[] = [];
   stats: any;
+  doctorStats: any[][] = [];
 
   data = [
     ['Patients', 120],
@@ -36,14 +37,33 @@ export class DashboardComponent
   combo = ChartType.ComboChart;
 
   options = {
-    pieHole: 0.4
+    pieHole: 0.4,
+       colors: [
+      '#f0a8af', '#EC407A', '#052c65', '#c2c2f0', '#0069d9', '#bf86e7',
+      '#dc3545', '#ff7700', '#66ff66', '#c2c2f0', '#AB47BC', '#ffcd36',
+      '#052c65', '#7E57C2', '#70b595', '#FFCA28', '#FF6384', '#36A2EB', '#66ff66',
+    ]
   };
 
-  fetchAppointments(){
-
-    this.graph.getorderstatustotalcount().subscribe((res) =>
+  
+  ngOnInit()
   {
-    this.appointments = res;
+    this.fetchStats();
+  }
+
+  fetchStats(){
+
+    this.graph.getDashboardStatsTotalCount().subscribe((res) =>
+  {
+    this.stats = res;
+  });
+  }
+
+  fetchDoctorStats(){
+
+    this.graph.getDoctorStats().subscribe((res) =>
+  {
+    this.doctorStats = res;
   });
   }
 }

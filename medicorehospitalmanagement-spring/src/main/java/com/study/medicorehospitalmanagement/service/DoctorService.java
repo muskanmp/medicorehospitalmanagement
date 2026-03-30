@@ -7,6 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import com.study.medicorehospitalmanagement.dto.DoctorResponseDto;
+import com.study.medicorehospitalmanagement.dto.DoctorWorkloadDTO;
 import com.study.medicorehospitalmanagement.repositories.DoctorRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -16,7 +17,6 @@ import lombok.RequiredArgsConstructor;
 
 public class DoctorService {
 
-    
     private final DoctorRepository doctorRepository;
     private final ModelMapper modelMapper;
 
@@ -25,5 +25,14 @@ public class DoctorService {
                 .stream()
                 .map(doctor -> modelMapper.map(doctor, DoctorResponseDto.class))
                 .collect(Collectors.toList());
+    }
+
+    public List<DoctorWorkloadDTO> getDoctorWorkload() {
+
+        List<Object[]> result = doctorRepository.getDoctorWorkload();
+
+        return result.stream().map(obj -> new DoctorWorkloadDTO(
+                (String) obj[0],
+                (Long) obj[1])).toList();
     }
 }

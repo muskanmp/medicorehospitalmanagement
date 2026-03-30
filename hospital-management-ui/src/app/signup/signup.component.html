@@ -1,1 +1,64 @@
-<p>signup works!</p>
+<div class="login-page">
+  <div class="card3 signup-card">
+
+    <div class="card-header" style="border-top: 3px solid #2f4050">
+      <b>Sign Up</b>
+    </div>
+
+    <div class="card-body">
+
+      <!-- Full Name -->
+      <div class="form-group">
+        <label class="form-label">Full Name</label>
+        <input
+          pInputText
+          [(ngModel)]="signup.name"
+          placeholder="Enter full name"
+          class="w-full"
+        />
+      </div>
+
+      <!-- Username -->
+      <div class="form-group">
+        <label class="form-label">Username</label>
+        <input
+          pInputText
+          [(ngModel)]="signup.username"
+          placeholder="Enter username"
+          class="w-full"
+        />
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <p-password
+          [(ngModel)]="signup.password"
+          [feedback]="false"
+          placeholder="Enter password"
+          styleClass="w-full"
+        ></p-password>
+      </div>
+
+      <!-- Buttons -->
+      <div class="actions">
+        <button
+          pButton
+          label="Register"
+          icon="pi pi-user-plus"
+          class="p-button-success"
+          (click)="signupUser()"
+        ></button>
+&nbsp;
+        <button
+          pButton
+          label="Reset"
+          icon="pi pi-refresh"
+          class="p-button-secondary"
+          (click)="resetForm()"
+        ></button>
+      </div>
+
+    </div>
+  </div>
+</div>

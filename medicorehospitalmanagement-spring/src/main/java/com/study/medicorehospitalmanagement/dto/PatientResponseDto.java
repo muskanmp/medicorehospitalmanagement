@@ -8,7 +8,7 @@ import lombok.Data;
 
 @Data
 public class PatientResponseDto {
-    private Long id;
+    private Long patientid;
     private String name;
     private String gender;
     private LocalDate birthdate;

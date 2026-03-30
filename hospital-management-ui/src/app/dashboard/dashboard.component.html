@@ -1,41 +1,106 @@
 <div class="cards">
   <p-card>
     <h3>Total Patients</h3>
-    <h2>{{ stats.patients }}</h2>
+    <h2>{{ stats.totalPatients }}</h2>
   </p-card>
 
   <p-card>
     <h3>Total Doctors</h3>
-    <h2>{{ stats.doctors }}</h2>
+    <h2>{{ stats.totalDoctors }}</h2>
   </p-card>
 
   <p-card>
     <h3>Appointments</h3>
-    <h2>{{ stats.appointments }}</h2>
+    <h2>{{ stats.totalAppointments }}</h2>
   </p-card>
 
   <p-card>
     <h3>Departments</h3>
-    <h2>{{ stats.departments }}</h2>
+    <h2>{{ stats.totalDepartments }}</h2>
   </p-card>
 </div>
 
-<p-card header="Hospital Analytics">
+<div class="card">
+  <div
+    class="container1"
+    style="
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      width: 100%;
+      overflow: visible;
+    "
+  >
+    <div
+      style="
+        flex: 1 1 calc(49.33% - 20px);
+        min-width: 200px;
+        position: relative;
+      "
+    >
+      <div
+        style="
+          display: flex;
+          padding-top: 15px;
+          justify-content: center;
+          align-items: center;
+          position: relative;
+        "
+      >
+        <span class="headerstyle">Hospital Statistics</span>
+      </div>
+      <ng-container *ngIf="data.length > 0; else noChart">
+        <google-chart
+          [type]="doughnut"
+          [data]="data"
+          [options]="options"
+        ></google-chart>
+      </ng-container>
 
-  <ng-container *ngIf="data.length > 0; else noOrderChart">
-    <google-chart
-      [type]="doughnut"
-      [data]="data"
-      [options]="options"
-    ></google-chart>
-  </ng-container>
-
-  <ng-template #noOrderChart>
-    <div style="text-align: center">
-      📊 No data available to render the chart.
+      <ng-template #noChart>
+        <div style="text-align: center">
+          📊 No data available to render the chart.
+        </div>
+      </ng-template>
     </div>
-  </ng-template>
-</p-card>
+
+    <div
+      style="
+        flex: 1 1 calc(49.33% - 20px);
+        min-width: 200px;
+        position: relative;
+      "
+    >
+      <div
+        style="
+          display: flex;
+          padding-top: 15px;
+          justify-content: center;
+          align-items: center;
+          position: relative;
+        "
+      >
+        <span class="headerstyle">Doctor Statistics</span>
+      </div>
+
+      <ng-container *ngIf="doctorStats.length > 0; else noChart">
+        <google-chart
+          [type]="doughnut"
+          [data]="doctorStats"
+          [options]="options"
+        ></google-chart>
+      </ng-container>
+
+      <ng-template #noChart>
+        <div style="text-align: center">
+          📊 No data available to render the chart.
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>
 
 <p-card header="Recent Appointments">
   <p-table [value]="appointments">
