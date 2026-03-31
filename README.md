@@ -12,7 +12,7 @@ Cloud: AWS EC2
 📐 Architecture
 
 Layered architecture ensuring scalability, security, and maintainability.
-
+```mermaid
 flowchart TB
 
 UI[Angular Frontend<br/>UI Layer]
@@ -39,6 +39,7 @@ R --> S
 S --> C
 C --> API
 API --> UI
+```
 
 🗄️ Database Design
 
