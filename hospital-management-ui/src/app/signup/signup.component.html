@@ -1,43 +1,94 @@
 <div class="login-page">
   <div class="card3 signup-card">
-
     <div class="card-header" style="border-top: 3px solid #2f4050">
       <b>Sign Up</b>
     </div>
 
     <div class="card-body">
-
       <!-- Full Name -->
-      <div class="form-group">
-        <label class="form-label">Full Name</label>
-        <input
-          pInputText
-          [(ngModel)]="signup.name"
-          placeholder="Enter full name"
-          class="w-full"
-        />
-      </div>
-
-      <!-- Username -->
-      <div class="form-group">
-        <label class="form-label">Username</label>
-        <input
-          pInputText
-          [(ngModel)]="signup.username"
-          placeholder="Enter username"
-          class="w-full"
-        />
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input
+              pInputText
+              [(ngModel)]="signup.name"
+              placeholder="Enter full name"
+              class="w-full"
+            />
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label class="form-label">Username</label>
+            <input
+              pInputText
+              [(ngModel)]="signup.username"
+              placeholder="Enter username"
+              class="w-full"
+            />
+          </div>
+        </div>
       </div>
 
       <!-- Password -->
-      <div class="form-group">
-        <label class="form-label">Password</label>
-        <p-password
-          [(ngModel)]="signup.password"
-          [feedback]="false"
-          placeholder="Enter password"
-          styleClass="w-full"
-        ></p-password>
+
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label class="form-label">Password</label>
+            <p-password
+              [(ngModel)]="signup.password"
+              [feedback]="false"
+              placeholder="Enter password"
+              styleClass="w-full"
+            ></p-password>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label class="form-label">ConfirmPassword</label>
+            <p-password
+              [(ngModel)]="cnfmpassword"
+              [feedback]="false"
+              placeholder="Enter password"
+              styleClass="w-full"
+            ></p-password>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label>Gender</label>
+            <p-dropdown
+              [options]="genders"
+              [(ngModel)]="signup.gender"
+            ></p-dropdown>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label>Birthdate</label>
+            <p-calendar
+              [(ngModel)]="signup.birthdate"
+              appendTo="body"
+            ></p-calendar>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label>Blood Group</label>
+            <p-dropdown
+              [options]="bloodGroups"
+              [(ngModel)]="signup.bloodgroup"
+            ></p-dropdown>
+          </div>
+        </div>
       </div>
 
       <!-- Buttons -->
@@ -49,7 +100,7 @@
           class="p-button-success"
           (click)="signupUser()"
         ></button>
-&nbsp;
+        &nbsp;
         <button
           pButton
           label="Reset"
@@ -58,7 +109,6 @@
           (click)="resetForm()"
         ></button>
       </div>
-
     </div>
   </div>
 </div>

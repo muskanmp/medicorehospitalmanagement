@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ChartType } from 'angular-google-charts';
 import { WebClientService } from '../web-client-service';
@@ -9,7 +9,7 @@ import { GraphService } from '../graph.service';
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
-export class DashboardComponent
+export class DashboardComponent implements OnInit
 {
 
 
@@ -19,13 +19,14 @@ export class DashboardComponent
   appointments: any[] = [];
   stats: any;
   doctorStats: any[][] = [];
+  data: any[][] = [];
 
-  data = [
-    ['Patients', 120],
-    ['Doctors', 15],
-    ['Appointments', 300],
-    ['Departments', 6]
-  ];
+  // data = [
+  //   ['Patients', 120],
+  //   ['Doctors', 15],
+  //   ['Appointments', 300],
+  //   ['Departments', 6]
+  // ];
 
   columnNames = ['Module', 'Count'];
 
@@ -46,9 +47,11 @@ export class DashboardComponent
   };
 
   
-  ngOnInit()
+  ngOnInit(): void
   {
     this.fetchStats();
+    this.fetchDoctorStats();
+    this.fetchAppointmentsStats();
   }
 
   fetchStats(){
@@ -63,7 +66,15 @@ export class DashboardComponent
 
     this.graph.getDoctorStats().subscribe((res) =>
   {
-    this.doctorStats = res;
+    this.doctorStats = res.map(r => [r.doctorName, r.totalAppointments]);
+  });
+  }
+
+  fetchAppointmentsStats(){
+
+    this.graph.getAppointmentsStats().subscribe((res) =>
+  {
+    this.data =  res.map(r => [r.month, r.count]);
   });
   }
 }

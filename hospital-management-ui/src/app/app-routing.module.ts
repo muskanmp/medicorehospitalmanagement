@@ -8,6 +8,7 @@ import { AppointmentAddComponent } from './appointment-add/appointment-add.compo
 import { AuthGuard } from './authGuard';
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { PatientAddComponent } from './patient-add/patient-add.component';
 
 
 export const routes: Routes = [
@@ -24,7 +25,9 @@ children:[
 
 { path:'appointments', component:AppointmentListComponent },
 
-{ path:'add-appointment', component:AppointmentAddComponent }
+{ path:'add-appointment', component:AppointmentAddComponent },
+
+{path: 'add-patient', component:PatientAddComponent}
 
 ]
 },

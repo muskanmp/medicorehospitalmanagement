@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { WebClientService } from '../web-client-service';
+import { Appointment, Department, Doctor, Patient } from '../entities';
 
 @Component({
   selector: 'app-appointment-add',
@@ -8,7 +9,15 @@ import { WebClientService } from '../web-client-service';
 })
 export class AppointmentAddComponent {
 
-  appointment:any={};
+  appointment: Appointment = {
+    id: 0,
+    patient: new Patient,
+    doctor: new Doctor,
+    department: new Department,
+    appointmenttime: '',
+    status: '',
+    reason: ''
+  };
 
 patients:any[]=[];
 doctors:any[]=[];
@@ -64,7 +73,15 @@ this.resetForm();
 }
 
 resetForm(){
-this.appointment={};
+this.appointment={
+    id: 0,
+    patient: new Patient,
+    doctor: new Doctor,
+    department: new Department,
+    appointmenttime: '',
+    status: '',
+    reason: ''
+  };
 }
 
 }

@@ -24,6 +24,7 @@ import { JwtInterceptor } from "./jwt.interceptor";
 import { DropdownModule } from "primeng/dropdown";
 import { CalendarModule } from "primeng/calendar";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PatientAddComponent } from "./patient-add/patient-add.component";
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PatientListComponent,
     AppointmentListComponent,
     AppointmentAddComponent,
+    PatientAddComponent,
     HomeComponent
   ],
 

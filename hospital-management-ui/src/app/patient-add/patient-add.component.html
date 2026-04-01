@@ -1,0 +1,94 @@
+<div class="body">
+  <div class="card3">
+
+    <div class="card-header" style="border-top: 3px solid #2f4050">
+      <b>Add Patient</b>
+    </div>
+
+    <div class="card-body">
+
+      <div class="row">
+
+        <!-- Name -->
+        <div class="col-6">
+          <label class="form-label">Full Name</label>
+          <input pInputText [(ngModel)]="patient.name" class="w-full" />
+        </div>
+
+        <!-- Email -->
+        <div class="col-6">
+          <label class="form-label">Email</label>
+          <input pInputText [(ngModel)]="patient.email" class="w-full" />
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <!-- Birthdate -->
+        <div class="col-6">
+          <label class="form-label">Birthdate</label>
+          <p-calendar [(ngModel)]="patient.birthdate" appendTo="body"></p-calendar>
+        </div>
+
+        <!-- Gender -->
+        <div class="col-6">
+          <label class="form-label">Gender</label>
+          <p-dropdown
+            [options]="genders"
+            [(ngModel)]="patient.gender"
+            placeholder="Select Gender"
+            appendTo="body">
+          </p-dropdown>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <!-- Blood Group -->
+        <div class="col-6">
+          <label class="form-label">Blood Group</label>
+          <p-dropdown
+            [options]="bloodGroups"
+            [(ngModel)]="patient.bloodgroup"
+            placeholder="Select Blood Group"
+            appendTo="body">
+          </p-dropdown>
+        </div>
+
+        <!-- Insurance -->
+        <div class="col-6">
+          <label class="form-label">Insurance</label>
+          <p-dropdown
+            [options]="insurances"
+            optionLabel="name"
+            [(ngModel)]="patient.insurance"
+            placeholder="Select Insurance"
+            appendTo="body">
+          </p-dropdown>
+        </div>
+
+      </div>
+
+      <div class="actions">
+
+        <button
+          pButton
+          label="Save"
+          class="p-button-success"
+          (click)="savePatient()">
+        </button>
+
+        <button
+          pButton
+          label="Reset"
+          class="p-button-secondary"
+          (click)="resetForm()">
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+</div>

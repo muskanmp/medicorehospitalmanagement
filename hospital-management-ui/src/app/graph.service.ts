@@ -16,12 +16,17 @@ export class GraphService {
 
   getDashboardStatsTotalCount(): Observable<any[]> {
     const token = localStorage.getItem("token");
-    const url= `${environment.BASE_URL}/admin/dashboard/stats`
+    const url= `${this.baseUrl}/admin/dashboard/stats`
     return this.http.get<any[]>(url);
   }
 
   getDoctorStats(): Observable<any[]> {
-    const url= `${environment.BASE_URL}/admin/doctor/stats`
+    const url= `${environment.BASE_URL}/admin/dashboard/doctor-stats`
+    return this.http.get<any[]>(url);
+  }
+
+  getAppointmentsStats(): Observable<any[]> {
+    const url= `${environment.BASE_URL}/admin/dashboard/monthly-appointments`
     return this.http.get<any[]>(url);
   }
 

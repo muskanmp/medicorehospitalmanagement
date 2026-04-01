@@ -17,7 +17,7 @@
             [options]="patients"
             optionLabel="name"
             placeholder="Select Patient"
-            [(ngModel)]="appointment.patient"
+            [(ngModel)]="appointment.patient.id"
           >
           </p-dropdown>
         </div>
@@ -29,7 +29,7 @@
             [options]="doctors"
             optionLabel="name"
             placeholder="Select Doctor"
-            [(ngModel)]="appointment.doctor"
+            [(ngModel)]="appointment.doctor.id"
             (onChange)="loadDoctorAvailability()"
           >
           </p-dropdown>
@@ -44,7 +44,7 @@
             [options]="departments"
             optionLabel="name"
             placeholder="Select Department"
-            [(ngModel)]="appointment.department"
+            [(ngModel)]="appointment.department.id"
           >
           </p-dropdown>
         </div>
@@ -53,7 +53,7 @@
         <div class="col-6 col-md-6">
           <label class="form-label">Appointment Date</label>
           <p-calendar
-            [(ngModel)]="appointment.date"
+            [(ngModel)]="appointment.appointmenttime"
             dateFormat="dd/mm/yy"
             showIcon="true"
             (onChange)="loadDoctorAvailability()"
@@ -68,7 +68,7 @@
           <label class="form-label">Available Time Slots</label>
           <p-dropdown
             [options]="timeSlots"
-            [(ngModel)]="appointment.time"
+            [(ngModel)]="appointment.appointmenttime"
             placeholder="Select time slot"
           >
           </p-dropdown>
@@ -87,14 +87,14 @@
       </div>
 
       <div class="row">
-        <!-- Notes -->
+        <!-- Reason -->
         <div class="col-6 col-md-6">
-          <label class="form-label">Notes</label>
+          <label class="form-label">Reason</label>
           <textarea
             pInputTextarea
             rows="2"
-            [(ngModel)]="appointment.notes"
-            placeholder="Enter additional notes"
+            [(ngModel)]="appointment.reason"
+            placeholder="Enter reason for appointment"
           >
           </textarea>
         </div>
