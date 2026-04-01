@@ -12,14 +12,33 @@ Cloud: AWS EC2
 📐 Architecture
 
 Layered architecture ensuring scalability, security, and maintainability.
-
 ```mermaid
 flowchart TB
-UI[Angular] --> API[Spring Boot API]
-API --> C[Controller]
-C --> S[Service]
-S --> R[Repository]
-R --> DB[(MariaDB)]
+
+UI[Angular Frontend<br/>UI Layer]
+API[Spring Boot REST API]
+
+subgraph Backend["Spring Boot Backend"]
+    C[Controller Layer<br/>@RestController]
+    S[Service Layer<br/>Business Logic]
+    R[Repository Layer<br/>Spring Data JPA]
+    E[Entity Layer<br/>JPA Entities]
+end
+
+DB[(MariaDB / MySQL Database)]
+
+UI -->|REST API| API
+API --> C
+C --> S
+S --> R
+R --> E
+E --> DB
+
+DB --> R
+R --> S
+S --> C
+C --> API
+API --> UI
 ```
 
 🗄️ Database Design
