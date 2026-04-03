@@ -2,15 +2,12 @@ package com.study.medicorehospitalmanagement.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.study.medicorehospitalmanagement.entities.type.BloodGroupType;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -68,7 +65,7 @@ public class Patient implements Serializable{
 
     // @CreationTimestamp
     @Column(name = "createdat", updatable = false)
-    private LocalDateTime createdat;
+    private Date createdat;
 
     @OneToOne
     private User user; 

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ChartType } from 'angular-google-charts';
 import { WebClientService } from '../web-client-service';
 import { GraphService } from '../graph.service';
+import { Stats } from '../entities';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,13 +12,16 @@ import { GraphService } from '../graph.service';
 })
 export class DashboardComponent implements OnInit
 {
-
-
   constructor(private graph: GraphService, protected router: Router, private webclient: WebClientService) { }
 
   type = 'PieChart';
   appointments: any[] = [];
-  stats: any;
+  stats: Stats = {
+    totalPatients: 0,
+    totalDoctors: 0,
+    totalAppointments: 0,
+    totalDepartments: 0
+  };
   doctorStats: any[][] = [];
   data: any[][] = [];
 

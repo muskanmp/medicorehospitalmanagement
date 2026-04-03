@@ -33,13 +33,33 @@ export class SignupComponent {
     { label: 'Male', value: 'MALE' },
     { label: 'Female', value: 'FEMALE' },
   ];
-cnfmpassword: any;
+  cnfmpassword: any;
+  cnfpasswordError: boolean = false;
   constructor(
     private service: AuthService,
     private router: Router,
   ) {}
 
+  onPasswordCheck() {
+    if (this.signup.password !== this.cnfmpassword) {
+      this.cnfpasswordError = true;
+    }
+      else {
+        this.cnfpasswordError = false;
+      }
+  }
+  
   signupUser() {
+    if (this.signup.password !== this.cnfmpassword) {
+      this.cnfpasswordError = true;
+      return;
+    }
+    if (!this.signup.username || !this.signup.password || !this.signup.name || !this.signup.gender 
+      || !this.signup.birthdate || !this.signup.bloodgroup) {
+      alert("Please fill all the fields");
+      return;
+    }
+
     this.service.signup(this.signup).subscribe((res: any) => {
       // Redirect to login
       this.router.navigate(['/login']);

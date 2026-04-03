@@ -1,7 +1,7 @@
 <div class="layout">
   <!-- Sidebar -->
   <div class="sidebar" [class.collapsed]="collapsed">
-    <div class="logo">HMS</div>
+    <div class="logo" style="padding: 10px;">HMS</div>
 
     <ul>
       <li routerLink="/home/dashboard">
@@ -36,7 +36,7 @@
   <div class="content">
     <!-- Header -->
     <div class="header">
-      <button pButton icon="pi pi-bars" (click)="toggleSidebar()"></button>
+      <button style="background: #536779;" pButton icon="pi pi-bars" (click)="toggleSidebar()"></button>
 
       <div class="profile">
         <p-menu #menu [popup]="true" [model]="profileItems"></p-menu>
@@ -44,6 +44,7 @@
         <button
           pButton
           icon="pi pi-user"
+          style="background: #536779;"
           (click)="menu.toggle($event)"
         ></button>
       </div>

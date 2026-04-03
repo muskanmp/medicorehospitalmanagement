@@ -32,7 +32,6 @@
       </div>
 
       <!-- Password -->
-
       <div class="row">
         <div class="col-6">
           <div class="form-group">
@@ -52,8 +51,12 @@
               [(ngModel)]="cnfmpassword"
               [feedback]="false"
               placeholder="Enter password"
+              (ngModelChange)="onPasswordCheck()"
               styleClass="w-full"
             ></p-password>
+            <div *ngIf="cnfpasswordError" class="error-message">
+              Passwords do not match
+            </div>
           </div>
         </div>
       </div>
@@ -87,6 +90,17 @@
               [options]="bloodGroups"
               [(ngModel)]="signup.bloodgroup"
             ></p-dropdown>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              pInputText
+              [(ngModel)]="signup.email"
+              placeholder="Enter email"
+              class="w-full"
+            />
           </div>
         </div>
       </div>

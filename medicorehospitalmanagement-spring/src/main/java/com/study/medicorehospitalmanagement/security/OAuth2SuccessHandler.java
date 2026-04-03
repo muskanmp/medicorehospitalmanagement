@@ -41,7 +41,9 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
 
                 response.setStatus(entity.getStatusCode().value());
                 response.setContentType(org.springframework.http.MediaType.APPLICATION_JSON_VALUE);
-                response.getWriter().write(objectMapper.writeValueAsString(entity.getBody()));
+                // response.getWriter().write(objectMapper.writeValueAsString(entity.getBody()));
+
+    response.sendRedirect("http://localhost:4200/oauth-success?token=" + entity.getBody().getJwt());
 
     }
 

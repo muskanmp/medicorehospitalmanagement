@@ -1,5 +1,6 @@
 package com.study.medicorehospitalmanagement.security;
 
+import java.util.Date;
 import java.util.Set;
 
 import org.jspecify.annotations.Nullable;
@@ -69,7 +70,11 @@ public class AuthService {
 
         Patient patient = Patient.builder()
         .name(signupResuestDTO.getName())
-        .email(signupResuestDTO.getUsername())
+        .birthdate(signupResuestDTO.getBirthdate())
+        .bloodgroup(signupResuestDTO.getBloodgroup())
+        .gender(signupResuestDTO.getGender())
+        .email(signupResuestDTO.getEmail())
+        .createdat(new Date())
         .user(user)
         .build(); 
 
@@ -98,7 +103,7 @@ public class AuthService {
 
         if (user == null || emailuser == null) {
             String username = authUtil.determineUsernameFromOAuth2(oAuth2User, registerId, providerId);
-            user = singupInternal(new SignupRequestDTO(username, null, name), providerType, providerId);
+            user = singupInternal(new SignupRequestDTO(username, null, name, email, null, null, null), providerType, providerId);
         } else if (user != null) {
             if (email != null && !email.isEmpty() && !email.equals(user.getUsername())) {
                 user.setUsername(email);

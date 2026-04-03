@@ -30,3 +30,10 @@ export class Department {
     id!: number;
     name!: string;
 }
+
+export class Stats{
+    totalPatients!: number;
+    totalDoctors!: number;
+    totalAppointments!: number;
+    totalDepartments!: number;
+}

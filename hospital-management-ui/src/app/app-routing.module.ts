@@ -9,6 +9,7 @@ import { AuthGuard } from './authGuard';
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PatientAddComponent } from './patient-add/patient-add.component';
+import { OauthSuccessComponent } from './oauth-success.component';
 
 
 export const routes: Routes = [
@@ -36,7 +37,9 @@ children:[
 
 { path:'signup', component:SignupComponent },
 
-{ path:'', redirectTo:'/login', pathMatch:'full'}
+{ path:'', redirectTo:'/login', pathMatch:'full'},
+
+{ path: 'oauth-success', component: OauthSuccessComponent }
 
 ]
 

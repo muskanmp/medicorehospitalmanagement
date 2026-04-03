@@ -14,7 +14,7 @@ export class GraphService {
   }
 
 
-  getDashboardStatsTotalCount(): Observable<any[]> {
+  getDashboardStatsTotalCount(): Observable<any> {
     const token = localStorage.getItem("token");
     const url= `${this.baseUrl}/admin/dashboard/stats`
     return this.http.get<any[]>(url);
