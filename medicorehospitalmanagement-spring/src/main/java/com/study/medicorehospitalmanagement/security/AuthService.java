@@ -67,6 +67,9 @@ public class AuthService {
         }
 
         user = userRepository.save(user);
+        if(signupResuestDTO.getName()==null||signupResuestDTO.getName().isBlank()){
+            signupResuestDTO.setName(signupResuestDTO.getUsername());
+        }
 
         Patient patient = Patient.builder()
         .name(signupResuestDTO.getName())
@@ -103,6 +106,8 @@ public class AuthService {
 
         if (user == null || emailuser == null) {
             String username = authUtil.determineUsernameFromOAuth2(oAuth2User, registerId, providerId);
+            System.out.println("Determined username: " + username);
+            System.out.println("Name : " + name);
             user = singupInternal(new SignupRequestDTO(username, null, name, email, null, null, null), providerType, providerId);
         } else if (user != null) {
             if (email != null && !email.isEmpty() && !email.equals(user.getUsername())) {

@@ -15,7 +15,7 @@ export class OauthSuccessComponent implements OnInit {
 
     if (token) {
       localStorage.setItem('token', token);
-      this.router.navigate(['/home/dashboard']);
+      this.router.navigate(['/setnewpassword']);
     } else {
       this.router.navigate(['/login']);
     }

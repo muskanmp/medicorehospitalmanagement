@@ -1,21 +1,23 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private user: any = null;
+  private userSubject = new BehaviorSubject<any>(null);
+  user$ = this.userSubject.asObservable();
 
   setUser(user: any) {
-    this.user = user;
+    this.userSubject.next(user);
   }
 
   getUser() {
-    return this.user;
+    return this.userSubject.value;
   }
 
   clearUser() {
-    this.user = null;
+    this.userSubject.next(null);
   }
 }

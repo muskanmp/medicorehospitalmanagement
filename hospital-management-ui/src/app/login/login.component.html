@@ -1,9 +1,6 @@
 <div class="login-page">
-
   <p-card header="Medi Core System" class="login-card">
-
     <div class="p-fluid">
-
       <div class="field">
         <label>Email</label>
         <input
@@ -31,25 +28,36 @@
         (click)="login()"
       ></button>
 
-      <div class="error" style="color: red; margin-top: 10px;">{{errormessage}}</div>
+      <div class="error" style="color: red; margin-top: 10px">
+        {{ errormessage }}
+      </div>
 
-      <div class="divider">OR</div>
+      <div class="divider">Or continue with</div>
 
-      <button
-        pButton
-        label="Continue with Google"
-        icon="pi pi-google"
-        class="p-button-outlined google-btn"
-        (click)="googlelogin()"
-      ></button>
+      <div class="row" style="display: flex; justify-content: center">
+        <div class="col-3" style="display: flex; justify-content: center">
+          <button
+            pButton
+            icon="pi pi-google"
+            class="p-button-outlined"
+            (click)="googlelogin()"
+          ></button>
+        </div>
+
+        <div class="col-3" style="display: flex; justify-content: center">
+          <button
+            pButton
+            icon="pi pi-github"
+            class="p-button-outlined github-btn"
+            (click)="githublogin()"
+          ></button>
+        </div>
+      </div>
 
       <div class="signup">
         Don't have an account?
         <a routerLink="/signup">Signup</a>
       </div>
-
     </div>
-
   </p-card>
-
 </div>

@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PatientAddComponent } from './patient-add/patient-add.component';
 import { OauthSuccessComponent } from './oauth-success.component';
+import { SetnewpasswordComponent } from './setnewpassword/setnewpassword.component';
 
 
 export const routes: Routes = [
@@ -39,7 +40,9 @@ children:[
 
 { path:'', redirectTo:'/login', pathMatch:'full'},
 
-{ path: 'oauth-success', component: OauthSuccessComponent }
+{ path: 'oauth-success', component: OauthSuccessComponent },
+
+{path: 'setnewpassword', component: SetnewpasswordComponent}
 
 ]
 

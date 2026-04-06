@@ -25,6 +25,7 @@ import { DropdownModule } from "primeng/dropdown";
 import { CalendarModule } from "primeng/calendar";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PatientAddComponent } from "./patient-add/patient-add.component";
+import { SetnewpasswordComponent } from './setnewpassword/setnewpassword.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { PatientAddComponent } from "./patient-add/patient-add.component";
     AppointmentListComponent,
     AppointmentAddComponent,
     PatientAddComponent,
-    HomeComponent
+    HomeComponent,
+    SetnewpasswordComponent
   ],
 
   imports: [

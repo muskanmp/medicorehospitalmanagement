@@ -1,15 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { environment } from '../../environments/environment.development';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   loginData = {
     username: '',
     password: '',
@@ -22,7 +23,13 @@ export class LoginComponent {
   constructor(
     private authService: AuthService,
     private router: Router,
+    private userService: UserService,
   ) {}
+
+  ngOnInit(): void {
+    this.userService.clearUser();
+    localStorage.removeItem('token');
+  }
 
   login() {
     this.authService.login(this.loginData).subscribe(
@@ -42,5 +49,9 @@ export class LoginComponent {
 
   googlelogin() {
     window.location.href = `${this.baseUrl}/oauth2/authorization/google`;
+  }
+
+  githublogin() {
+    window.location.href = `${this.baseUrl}/oauth2/authorization/github`;
   }
 }

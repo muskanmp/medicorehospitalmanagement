@@ -37,3 +37,9 @@ export class Stats{
     totalAppointments!: number;
     totalDepartments!: number;
 }
+
+export class User {
+    id!: number;
+    username!: string;
+    password!: string;
+}

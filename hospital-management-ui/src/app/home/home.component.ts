@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
+import { User } from '../entities';
 
 @Component({
   selector: 'app-home',
@@ -8,28 +9,38 @@ import { UserService } from '../user.service';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit {
-  user: any;
+  user: User = {
+    id: 0,
+    username: '',
+    password: '',
+  };
   profileItems: any;
-  constructor(private router: Router, private userService: UserService) {}
+  constructor(
+    private router: Router,
+    private userService: UserService,
+  ) {}
   collapsed = false;
 
   role = 'ADMIN'; // get from JWT later
 
   ngOnInit(): void {
-    this.user = this.userService.getUser();
-    
-    this.profileItems = [
-      {
-        label: this.user.sub,
-        icon: 'pi pi-user',
-      },
-      {
-        label: 'Logout',
-        icon: 'pi pi-sign-out',
-        command: () => this.onLogout(),
-      },
-    ];
-    console.log(this.user);
+    this.userService.user$.subscribe((user) => {
+      if (user) {
+        this.user = user;
+
+        this.profileItems = [
+          {
+            label: this.user.username,
+            icon: 'pi pi-user',
+          },
+          {
+            label: 'Logout',
+            icon: 'pi pi-sign-out',
+            command: () => this.onLogout(),
+          },
+        ];
+      }
+    });
   }
 
   toggleSidebar() {
@@ -37,7 +48,7 @@ export class HomeComponent implements OnInit {
   }
 
   onLogout() {
-    
+    this.userService.clearUser();
     localStorage.removeItem('token');
     localStorage.clear();
     this.router.navigateByUrl('login');

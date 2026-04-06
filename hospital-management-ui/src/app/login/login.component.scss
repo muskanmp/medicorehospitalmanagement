@@ -34,3 +34,8 @@
   text-align: center;
   margin-top: 15px;
 }
+
+::ng-deep .p-card-body {
+  background: #2f4050!important;
+  color: whitesmoke;
+}

@@ -72,6 +72,7 @@ public class AuthUtil {
 
     public String determineUsernameFromOAuth2(OAuth2User auth2User, String regId, String provdId){
         String email = auth2User.getAttribute("email");
+        System.out.println("OAuth2User: " + auth2User.getAttributes());
         if (email !=null && !email.isBlank()){
             return email;
         }
